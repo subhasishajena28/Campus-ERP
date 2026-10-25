@@ -1,0 +1,809 @@
+# PROJECT: CAMPUSLY — AI-POWERED STUDENT ERP & ACADEMIC INTELLIGENCE PLATFORM
+
+## 1. Your Role
+
+Act as a senior full-stack software engineer, product designer, UI/UX specialist, database architect, and AI application developer.
+
+Build a complete, modern, responsive, deployment-ready web application called **CAMPUSLY**. It is a student ERP portal that combines academic management, student profiles, fees, results, attendance, student portfolios, and AI-powered academic analytics in one unified platform.
+
+This is a serious portfolio project created by a third-year B.Tech Data Science student. The finished application must be impressive enough to demonstrate to college faculty, internship interviewers, and technical recruiters.
+
+Do not create just a static UI design, a landing page, or a dashboard mockup. Build a working application with real navigation, functional forms, interactive charts, authentication, data persistence, useful demo data, and Gemini API integration.
+
+Make sensible technical and design decisions without asking me numerous clarification questions.
+
+## 2. Product Vision and Branding
+
+Product name: CAMPUSLY
+
+Tagline: "Your academics. Your progress. Your future."
+
+Supporting description: "A smarter student experience powered by academic analytics and AI."
+
+The application should feel like a polished SaaS product used by a modern university. It must not look like an outdated college website or a generic admin dashboard template.
+
+Create a recognizable visual identity with:
+- A clean CAMPUSLY wordmark and a simple graduation-cap or abstract academic logo.
+- A professional dashboard with a collapsible sidebar.
+- Clear typography and excellent spacing.
+- Subtle gradients, elegant charts, tasteful icons, and restrained animations.
+- A consistent design system across public pages and authenticated pages.
+
+Use a light theme by default, with an optional dark mode.
+
+The application is an independent student ERP prototype, not an official university ERP. Do not use real university branding, logos, or claims of integration with an actual university.
+
+## 3. Required Technology Stack
+
+Use the following stack wherever compatible with the Google AI Studio full-stack environment:
+
+- Frontend: React with TypeScript.
+- Styling: Tailwind CSS.
+- Routing: React Router.
+- Icons: Lucide React.
+- Charts and visualizations: Recharts.
+- Authentication: Firebase Authentication, supporting email/password and Google sign-in where configured.
+- Persistent database: Cloud Firestore.
+- AI integration: Google Gemini API.
+- Backend: Node.js server-side runtime for secure API calls and server-side operations.
+- Forms: React Hook Form and Zod, or an equivalent validation approach.
+- Date formatting and utilities: lightweight, actively maintained libraries where necessary.
+
+Use a clean component-based architecture. Keep UI components, pages, hooks, data-access services, AI services, types, and server-side API handlers organized into logical files.
+
+Do not expose API keys or private credentials in frontend code.
+
+Use the Gemini API through a server-side endpoint and read GEMINI_API_KEY from the secure environment provided by Google AI Studio. Never hardcode the key, expose it through Vite variables, or send it to the browser.
+
+Use Firebase integration to configure authentication and Firestore when available. If external configuration is incomplete during the initial preview, provide a clearly identified demo mode so the core application can still be explored without a real university account. Do not pretend that unconfigured cloud services are connected.
+
+## 4. Design Direction and Visual Quality
+
+Create a premium, professional interface with the following visual direction:
+
+- Main background: soft off-white or very light neutral.
+- Primary color: deep indigo or navy.
+- Accent color: electric blue or cyan, used selectively.
+- Typography: Inter or a similar modern sans-serif.
+- Cards: subtle borders, soft shadows, consistent corner radius, and generous internal spacing.
+- Charts: clean labels, readable legends, subtle gridlines, useful tooltips, and consistent colors.
+- Icons: Lucide icons rather than emoji icons.
+- Animations: subtle transitions for hover, navigation, card loading, and modal opening.
+- Layout: responsive and uncluttered, with consistent spacing.
+
+Avoid excessive gradients, unnecessary glassmorphism, huge headings inside the dashboard, rainbow-colored charts, oversized empty cards, or excessive rounded pills.
+
+Use a polished left sidebar and a top navigation bar. The sidebar should support expanded and collapsed states on desktop and a drawer on mobile.
+
+The dashboard should have a clear information hierarchy. Important academic numbers should be easy to scan without overwhelming the student with too many cards.
+
+Ensure the website looks excellent at desktop, laptop, tablet, and mobile widths.
+
+## 5. Public Website and Landing Page
+
+Create a fully designed public home page at `/`.
+
+### Navigation
+Include:
+- CAMPUSLY logo.
+- Home.
+- Features.
+- How It Works.
+- About.
+- Sign In.
+- Get Started.
+
+The navigation should work, with appropriate scrolling or routing.
+
+### Hero section
+Create a visually striking hero with the headline:
+
+"Everything about your student life. One intelligent dashboard."
+
+Supporting description:
+
+"Manage your academics, track your progress, organize your portfolio, and make smarter learning decisions with AI-powered insights."
+
+Include two clear calls to action:
+- Explore Demo Dashboard
+- Create Free Account
+
+Add a sophisticated dashboard preview on the right side of the hero, using actual components or a realistic live preview of the dashboard. Do not use a random stock photo as the primary visual.
+
+### Feature sections
+Create attractive sections that introduce:
+1. Academic dashboard and semester tracking.
+2. Result and CGPA analytics.
+3. Attendance monitoring.
+4. Fees and payment-status tracking.
+5. Student portfolio and projects.
+6. AI Academic Copilot.
+7. Personalized study planning.
+8. Secure profile and academic record management.
+
+Include a concise "How it works" section, a final call to action, and a polished footer.
+
+The landing page must remain useful and navigable on its own. The demo button should open an actual working demo experience.
+
+## 6. Authentication and Onboarding
+
+Create these routes:
+- `/login`
+- `/signup`
+- `/forgot-password`
+- `/onboarding`
+
+### Sign-up page
+Allow a student to create an account using:
+- Full name.
+- Email address.
+- Password.
+- Confirm password.
+- Acceptance of terms.
+
+After successful registration, guide the student through a profile setup form.
+
+### Login page
+Include:
+- Email and password.
+- Show/hide password control.
+- Remember me where appropriate.
+- Forgot password link.
+- Google sign-in when Firebase is configured.
+- A clearly marked demo login or Explore Demo option.
+
+Handle invalid credentials, duplicate accounts, loading states, validation errors, and success messages properly.
+
+Use Firebase Authentication rather than storing passwords yourself.
+
+### Student onboarding
+Collect:
+- Full name.
+- Student ID or enrollment number.
+- College or institution name.
+- Degree and specialization.
+- Department.
+- Current semester and year.
+- Expected graduation year.
+- Contact details, optionally.
+- Profile photo, optionally.
+
+Validate user input. Make optional fields clear.
+
+Students must be able to skip optional fields and complete their profile later.
+
+If a real login is not configured, the demo flow must still let recruiters explore the application without requiring a real student account.
+
+## 7. Main Authenticated Application Structure
+
+After login, display a student application shell with a sidebar, top bar, page title, breadcrumb where useful, notification icon, profile menu, and theme switch.
+
+Use these routes:
+
+- `/app/dashboard`
+- `/app/academics`
+- `/app/results`
+- `/app/attendance`
+- `/app/fees`
+- `/app/portfolio`
+- `/app/timetable`
+- `/app/notices`
+- `/app/ai-advisor`
+- `/app/profile`
+- `/app/settings`
+
+Protect authenticated routes. Users must only access their own records.
+
+If a logged-out visitor opens a protected route, redirect them to login. Preserve a return destination when practical.
+
+Add a working not-found page.
+
+## 8. Student Dashboard
+
+Route: `/app/dashboard`
+
+Create an information-rich but uncluttered dashboard that feels like a real product.
+
+### Welcome section
+Show a personalized greeting, such as:
+
+"Good afternoon, Aarav 👋"
+
+Use the authenticated user's name when available. If the visitor is using sample data, clearly label the experience as demo mode.
+
+Show their degree, department, semester, and academic year underneath.
+
+Include useful quick actions, such as Update Profile, View Results, Add Project, and Ask AI.
+
+### Key metric cards
+Display:
+- Current CGPA.
+- Overall attendance.
+- Subjects requiring attention.
+- Portfolio project count.
+- Fee payment status.
+
+Calculate these metrics from the available records instead of displaying unrelated hardcoded values.
+
+Use appropriate loading, empty, and error states.
+
+### Performance analytics
+Create a large semester-wise CGPA line chart using Recharts.
+
+Include:
+- Semester labels.
+- CGPA values.
+- Helpful tooltips.
+- A clear chart title.
+- A compact explanation of the trend.
+
+Add a subject-wise performance chart showing marks or grades across relevant subjects.
+
+Provide filters for semester or academic year where applicable.
+
+### Attendance overview
+Show attendance percentage, attended classes, total classes, and subject-wise attendance progress bars.
+
+Display a configurable warning when attendance falls below a demo threshold of 75%. Explain that actual minimum attendance requirements depend on the student's institution.
+
+### Fee summary
+Show total assessed fees, amount paid, outstanding balance, and the next due date if available.
+
+Clearly label sample values as demonstration data.
+
+### AI academic insight
+Create a compact section titled "Your Learning Pulse".
+
+Show one or two useful insights based on the student’s actual stored data, such as a subject that may need additional attention or a positive semester trend.
+
+Provide a button that opens the complete AI Academic Advisor.
+
+### Upcoming schedule and announcements
+Display upcoming classes, assignments, examinations, fee deadlines, and institutional announcements using the current user's data.
+
+Every dashboard card that implies an action must open the appropriate page.
+
+## 9. Academics and Academic Record Management
+
+Route: `/app/academics`
+
+Build a detailed academic management page.
+
+Display:
+- Degree and specialization.
+- Semester.
+- Academic year.
+- Subject name and code.
+- Credits.
+- Marks or grade, if available.
+- Semester GPA and cumulative GPA.
+- Academic record status.
+
+Include a semester selector and a clear academic summary.
+
+### Add or edit academic records
+
+Allow the user to add and edit manually entered academic records in the prototype. Support fields such as:
+- Semester.
+- Academic year.
+- Subject name and code.
+- Credits.
+- Marks.
+- Grade.
+- Student-entered notes.
+
+Validate numeric inputs and reasonable ranges.
+
+Distinguish between:
+- Official or institution-imported records, which are read-only unless a verified administrative workflow exists.
+- Student-entered records, which are clearly marked "Unverified".
+
+For this prototype, demo records must be labeled as sample data, not official results.
+
+Do not silently present manually entered grades as verified academic records.
+
+Provide edit, delete, confirmation dialogs, and success/error messages for records the student is permitted to change.
+
+Update the related charts and summary metrics after saved data changes.
+
+## 10. Results and CGPA Analytics
+
+Route: `/app/results`
+
+Create a professional results page with:
+- Current CGPA.
+- Semester GPA.
+- Semester-wise performance history.
+- Subject-wise marks or grades.
+- Credits.
+- Grade and result status, where appropriate.
+- Filters for semester and academic year.
+
+Build a semester trend visualization and a detailed table.
+
+Include a "Download Results Summary" action that exports an appropriate CSV or print-friendly report from the user's actual saved data.
+
+If a field is unavailable, show "Not provided" rather than inventing a value.
+
+Never claim a result is officially verified when the application has not received it from a trusted institution.
+
+## 11. Attendance Management
+
+Route: `/app/attendance`
+
+Create an attendance analytics page containing:
+- Overall attendance.
+- Subject-wise attendance.
+- Classes attended.
+- Total classes.
+- Missed classes.
+- Attendance percentage.
+- A visual progress indicator for each subject.
+- Optional date-wise attendance history when data exists.
+
+Allow the user to filter by semester, subject, and date range.
+
+Add an explanatory section describing which subjects may need improvement.
+
+Use actual stored counts when calculating percentages. If data is absent, show an empty state and a way to add demo attendance records.
+
+In demo mode, allow simulated attendance records to be added or edited, while making it clear that they are not official attendance data.
+
+## 12. Fees and Payment Status
+
+Route: `/app/fees`
+
+Create a professional fee-management interface.
+
+Show:
+- Total assessed fees.
+- Amount paid.
+- Outstanding balance.
+- Due dates.
+- Payment history.
+- Receipt or transaction reference when available.
+- Current payment status.
+
+Use status labels such as Paid, Pending, Partially Paid, and Overdue when supported by the stored data.
+
+Provide fee tables with date filters and a receipt-view interface.
+
+Include a downloadable receipt or statement for applicable demo records, with a visible "DEMO RECEIPT — NOT VALID FOR PAYMENT OR OFFICIAL USE" label.
+
+Do not integrate real payments or request sensitive banking information. A Pay Now button, if included, must open a clearly labeled payment simulation instead of charging money or pretending an actual transaction succeeded.
+
+All balances must be calculated from the relevant fee and payment records.
+
+## 13. Portfolio and Projects
+
+Route: `/app/portfolio`
+
+This is a major feature and must be particularly polished because the platform should appeal to students and recruiters.
+
+Create a portfolio section where students can manage the projects they want to showcase.
+
+Display:
+- Student biography.
+- Technical skills.
+- Featured projects.
+- Project descriptions.
+- Technologies used.
+- GitHub repository links.
+- Live demo links.
+- Completion date or year.
+- Project category.
+- Featured status.
+
+Allow students to:
+- Add a project.
+- Edit a project.
+- Delete a project with confirmation.
+- Mark a project as featured.
+- Add and remove skills.
+- Preview their portfolio.
+- Copy or share a public portfolio URL only if a public profile feature is genuinely implemented.
+
+Each project should have a refined card design, appropriate visual treatment, a short description, technology tags, and functional external links where provided.
+
+Validate URLs and open external links safely.
+
+Build a project creation form with fields for title, description, technologies, GitHub URL, live demo URL, project category, and completion date.
+
+### Gemini-powered project description assistant
+
+Add an optional tool that improves a student's project description for clarity and professionalism.
+
+It must use the actual project information supplied by the student. It must not invent project results, model accuracy, downloads, users, or performance metrics.
+
+Let the student review and approve the improved text before saving it.
+
+## 14. Timetable and Tasks
+
+Route: `/app/timetable`
+
+Create a weekly timetable view that can switch between:
+- Weekly calendar.
+- Daily schedule.
+- Compact list.
+
+Each entry may contain:
+- Subject.
+- Start and end time.
+- Room or location.
+- Instructor, if provided.
+- Date.
+- Notes.
+
+Allow users to create, edit, and delete their own schedule entries.
+
+Also include a small task list for assignments, exams, project milestones, and study sessions.
+
+Support task completion, due dates, priorities, and status.
+
+Show empty states when no schedule has been configured.
+
+Do not imply that the timetable is synchronized with a real college unless a real integration is implemented.
+
+## 15. Notices and Notifications
+
+Route: `/app/notices`
+
+Create an announcements page with sample notices for demonstration.
+
+Include:
+- Announcement title.
+- Category.
+- Date.
+- Short description.
+- Read/unread state.
+- Priority, when applicable.
+
+Provide category filters and a detail view.
+
+Seed notices related to examinations, academic events, assignments, and deadlines. Make it clear they are demo announcements rather than official university notifications.
+
+Add a functional notifications menu connected to the demo or saved notice data.
+
+## 16. Gemini AI Academic Copilot
+
+Route: `/app/ai-advisor`
+
+This is the core AI feature. Build an actual Gemini-powered assistant rather than a hardcoded chatbot.
+
+Name it "Campus AI" or "Academic Copilot".
+
+Its purpose is to help students understand their academic progress, plan study time, and improve their project portfolios.
+
+### Core capabilities
+
+1. Academic Progress Summary
+   - Summarize the student's semester and CGPA trends.
+   - Highlight improvements or declines that are supported by the data.
+   - Explain which subjects may need more attention.
+
+2. Personalized Study Planner
+   - Generate a weekly study plan.
+   - Consider the student's upcoming assessments, available schedule, difficult subjects, and stated study goals.
+   - Allow the user to regenerate and save a plan.
+
+3. Subject Improvement Suggestions
+   - Explain which subjects may benefit from additional study, using actual performance and attendance data when available.
+   - Recommend actionable, appropriately scoped study tasks.
+   - Explain the evidence behind each suggestion.
+
+4. Academic Question Assistant
+   - Allow students to ask academic questions in a chat interface.
+   - Show loading indicators, error messages, and retry options.
+   - Render responses clearly, including lists and code blocks when appropriate.
+
+5. Portfolio Guidance
+   - Suggest ways to improve a project description, organize skills, and present verified achievements to recruiters.
+
+### Gemini integration requirements
+
+Implement a server-side API endpoint for Gemini requests.
+
+Use the secure GEMINI_API_KEY environment secret provided by Google AI Studio.
+
+Choose a currently supported Gemini model available to the app's configuration. Keep the selected model configurable rather than scattering model names throughout the code.
+
+Send only the minimum relevant student data needed for each request.
+
+Give Gemini a clear system instruction:
+- Do not fabricate marks, attendance, grades, CGPA, fee balances, deadlines, or achievements.
+- Distinguish measured facts from suggestions.
+- Explicitly acknowledge missing data.
+- Do not claim that a weak correlation proves a cause.
+- Give practical and encouraging academic advice without guaranteeing examination results.
+- Do not reveal another student's data.
+- Treat student-entered academic records as unverified.
+
+Validate requests and handle API failures, rate limits, empty responses, and timeouts gracefully.
+
+Do not expose the API key or internal server errors in frontend responses.
+
+If the Gemini API is unavailable, the rest of the application must still work. Show a graceful message rather than crashing the page.
+
+## 17. Data Science and Academic Intelligence
+
+This section is especially important. I am a B.Tech Data Science student, so the project should demonstrate that I understand data analysis and how to present data-driven insights in a useful product.
+
+Create a dedicated "Academic Intelligence" area within the dashboard or AI Advisor.
+
+Implement these analytical capabilities using real stored data.
+
+### A. CGPA trend analysis
+Calculate semester-wise changes in GPA and cumulative performance.
+
+Display:
+- Previous semester GPA.
+- Current semester GPA.
+- Absolute change.
+- Trend chart.
+- A brief explanation.
+
+Handle missing semesters and missing grades properly.
+
+### B. Subject performance analysis
+Identify subjects with comparatively lower marks or grades.
+
+Display a ranked view of subjects needing attention based on clearly defined metrics.
+
+Allow students to filter the analysis by semester.
+
+### C. Attendance analysis
+Calculate attendance percentages from class counts.
+
+Flag subjects that are near or below the configurable demonstration threshold.
+
+Provide transparent calculations, not arbitrary AI-generated numbers.
+
+### D. Academic pattern exploration
+Where sufficient matched subject-level data exists, explore whether lower attendance and lower marks occur together.
+
+Explain that such an association is exploratory and does not prove that one caused the other.
+
+Do not report statistically meaningful relationships when there is insufficient data.
+
+### E. Portfolio completeness
+Build a transparent portfolio completeness indicator based on defined rules such as:
+- Profile completeness.
+- Number of projects.
+- Presence of project descriptions.
+- Repository links.
+- Technical skills.
+- Optional live demos.
+
+Explain how the indicator is calculated. Do not describe it as a real recruiter score or an industry-standard hiring metric.
+
+### F. Data visualization
+Use well-designed charts, clear labels, sensible scales, and useful tooltips.
+
+All charts must update when the student changes the underlying records or filters.
+
+Keep the calculations in reusable TypeScript utility functions rather than embedding complex calculations directly inside UI components.
+
+## 18. Student Profile and Settings
+
+Route: `/app/profile`
+
+Create an editable student profile page.
+
+Allow the student to update:
+- Full name.
+- Profile photo.
+- Student ID.
+- Institution name.
+- Degree.
+- Specialization.
+- Department.
+- Current semester.
+- Graduation year.
+- Phone number, optionally.
+- City, optionally.
+- Short biography.
+- Technical skills.
+- GitHub profile link.
+- LinkedIn profile link.
+
+Validate inputs and URLs.
+
+Add a visible Save Changes button, an unsaved-changes indicator when appropriate, and clear success or failure feedback.
+
+Persist saved data to the authenticated user's database record.
+
+Route: `/app/settings`
+
+Include:
+- Theme preference.
+- Basic account information.
+- Notification preferences where implemented.
+- Account sign-out.
+- Account deletion or deletion-request workflow where properly supported.
+
+Explain data handling through a basic privacy notice. Do not collect more personal data than necessary.
+
+## 19. Demo Experience and Seed Data
+
+The initial experience must be impressive immediately, even before a recruiter creates an account.
+
+Provide an Explore Demo Dashboard entry point.
+
+Seed the demo with fictional data for a sample B.Tech Data Science student.
+
+Example data:
+- Name: Aarav Mehta.
+- Degree: B.Tech.
+- Specialization: Data Science.
+- Current semester: 5.
+- Graduation year: 2028.
+- Sample CGPA: 8.1.
+- Sample attendance: 86%.
+- Sample technical skills: Python, SQL, Pandas, NumPy, Matplotlib, Scikit-learn, Git, and GitHub.
+- Example portfolio projects: Student Performance Analysis, Bank Marketing Prediction, and Road Accident Analysis.
+
+Create plausible semester and subject records, timetable entries, fee records, and notices. Keep all fictional values internally consistent.
+
+Mark the entire demo clearly as "Demo Data" or "Sample Student".
+
+The sample data must not be presented as my personal achievements or authentic college records.
+
+The demo should support realistic interactions, including editing the sample profile, adding and updating sample projects, exploring academic charts, and trying the AI Academic Copilot.
+
+Keep demo data separate from real authenticated users' data.
+
+If demo-mode changes are only stored locally, make that limitation clear. Never use a shared demo identity to expose or overwrite a real user's records.
+
+## 20. Database Design and Data Integrity
+
+Use Firestore with a logical data structure. A suggested approach is to organize records under the authenticated user's UID.
+
+Possible entities:
+- User profiles.
+- Academic records.
+- Subjects.
+- Attendance records.
+- Fee assessments and payment records.
+- Portfolio projects.
+- Timetable events.
+- Tasks.
+- Notices or user-specific notice states.
+- Saved AI study plans.
+
+Use stable document IDs and timestamps.
+
+Add sensible loading, empty, and error states for database operations.
+
+Use secure Firebase rules so an authenticated student can only read and modify records they are authorized to access.
+
+Never rely exclusively on a frontend filter to enforce data privacy.
+
+Do not let students modify verified official results or payment records through ordinary student forms.
+
+Provide an example Firestore data model and security rules appropriate for the implemented schema. Avoid opening the database to the public with permissive production rules.
+
+Use separate demo and authenticated data flows.
+
+## 21. Interaction and Quality Requirements
+
+Every visible interactive element must work.
+
+Implement:
+- Working page navigation.
+- Active sidebar state.
+- Search and filters where displayed.
+- Form validation.
+- Add, edit, and delete operations where permitted.
+- Confirmation dialogs for destructive actions.
+- Functional theme switching.
+- Responsive sidebar or mobile navigation.
+- Functional charts and table filters.
+- Working CSV exports or print actions where shown.
+- Working login and logout flows when configured.
+- Proper notifications and feedback.
+- Correct handling of refreshes and direct route access.
+
+Use reusable UI primitives for buttons, cards, form fields, badges, dialogs, tables, and empty states.
+
+Do not create inert buttons, fake form submissions, broken links, or decorative charts with unrelated data.
+
+Avoid `TODO` placeholders and incomplete pages.
+
+Use realistic page titles, consistent date and currency formatting, and readable validation messages.
+
+Use INR formatting for example fee records.
+
+## 22. Accessibility, Performance, and Security
+
+Ensure:
+- Keyboard-accessible navigation.
+- Visible focus states.
+- Accessible labels and form errors.
+- Sufficient color contrast.
+- Responsive tables or mobile-friendly alternatives.
+- Reduced-motion support where practical.
+- Lazy loading or code splitting where useful.
+- Reasonable component sizes and maintainable code.
+- Validated and sanitized user inputs.
+- Safe handling of external links.
+- No sensitive data embedded in frontend source code.
+- No exposed Gemini API key.
+- No passwords stored in plain text.
+- No public Firestore rules that bypass authentication.
+
+Do not claim the application is production-certified or compliant with a particular legal or security standard without actually implementing and validating the required controls.
+
+## 23. Deployment and GitHub Readiness
+
+Prepare the app for deployment through Google AI Studio and Cloud Run.
+
+Ensure:
+- The app starts correctly in the provided environment.
+- Server-side Gemini requests work.
+- Environment secrets are used correctly.
+- Frontend routes work on direct navigation and refresh.
+- Firebase configuration errors are handled gracefully.
+- No private credentials are committed to source control.
+- The project has a clear README.
+- Setup instructions document environment variables and Firebase configuration.
+- The README includes a feature overview, tech stack, architecture, screenshots section, data model summary, local setup instructions, and deployment instructions.
+
+Create a `.gitignore` that excludes private environment files and generated dependencies as appropriate.
+
+Do not commit real secrets, API keys, private student data, or service-account credentials.
+
+If a feature requires external setup, document the exact remaining setup step honestly.
+
+## 24. Implementation Strategy
+
+Build the application in the following order:
+
+Phase 1: Establish the project structure, design system, public landing page, application shell, responsive sidebar, and routes.
+
+Phase 2: Implement demo data, the student dashboard, profile editor, academics, results, attendance, fees, timetable, notices, and portfolio management.
+
+Phase 3: Integrate Firebase Authentication and Firestore with proper user isolation and data validation.
+
+Phase 4: Implement server-side Gemini integration and the Academic Copilot.
+
+Phase 5: Connect analytical calculations and charts to stored data. Ensure the visualizations react to real updates.
+
+Phase 6: Add loading, empty, error, and success states. Test navigation, forms, permissions, and responsive behavior.
+
+Phase 7: Review the complete application for runtime errors, broken imports, incorrect calculations, nonfunctional controls, and styling inconsistencies. Fix the issues you can reproduce.
+
+Prioritize a complete working core application over unnecessary extra features.
+
+## 25. Final Acceptance Criteria
+
+The project is complete only when:
+
+1. The public landing page is polished and responsive.
+2. Sign-up, login, sign-out, and demo entry points are implemented.
+3. The application contains all required pages and navigation.
+4. The dashboard displays meaningful academic summaries and charts.
+5. Students can edit their profiles and manage their own portfolio projects.
+6. Academic record editing clearly distinguishes student-entered data from verified records.
+7. Results, attendance, and fees use consistent calculations and appropriate access restrictions.
+8. The Gemini Academic Copilot makes actual API calls through the server.
+9. Analytical charts update when relevant data changes.
+10. Data persists for authenticated users.
+11. Demo mode works without pretending to be a real university integration.
+12. The UI is clean, consistent, and usable on desktop and mobile.
+13. No buttons are merely decorative when they imply an action.
+14. Secrets are not exposed in client-side code.
+15. The project is organized, documented, and prepared for deployment.
+
+## Final Instruction
+
+Start building the actual application now.
+
+Do not respond with a tutorial, a feature list, or merely a proposed architecture. Create the project files and implement the pages, components, interactions, database integration, and Gemini server endpoint.
+
+Make reasonable implementation decisions independently. If an external service requires authorization or configuration, build the surrounding functionality and clearly identify the remaining step.
+
+After generating the project, launch the preview, inspect the implemented application, and correct build errors and broken interactions.
+
+The end result should feel like a professionally designed student technology product that demonstrates my abilities in React, TypeScript, Tailwind CSS, data visualization, database design, full-stack development, and applied AI.
+
+Make CAMPUSLY look impressive enough that a recruiter wants to click through it, explore the analytics, test the AI assistant, and inspect the source code.

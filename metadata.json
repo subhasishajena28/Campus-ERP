@@ -1,0 +1,7 @@
+{
+  "name": "CAMPUSLY — Academic Intelligence Platform",
+  "description": "AI-powered student ERP combining academic management, CGPA & attendance analytics, portfolio showcase, and Gemini AI Academic Copilot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
